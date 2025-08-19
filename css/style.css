@@ -1,25 +1,24 @@
 body {
-    background-color: #fafafa; /* Fundo bem claro */
-    font-family: 'Segoe UI', sans-serif; /* Fonte clean */
-  }
-  
-  h3 {
-    font-weight: 500;
-  }
-  
-  .card {
-    border-radius: 8px;
-  }
-  
-  .btn-primary {
-    background-color: #007bff; /* Azul padrão */
-    border: none;
-  }
-  .btn-primary:hover {
-    background-color: #0069d9;
-  }
-  
-  a {
-    font-weight: 500;
-  }
-  
+  background-color: #fafafa; /* Fundo bem claro */
+  font-family: 'Segoe UI', sans-serif; /* Fonte clean */
+}
+
+h3 {
+  font-weight: 500;
+}
+
+.card {
+  border-radius: 8px;
+}
+
+.btn-primary {
+  background-color: #007bff; /* Azul padrão */
+  border: none;
+}
+.btn-primary:hover {
+  background-color: #0069d9;
+}
+
+a {
+  font-weight: 500;
+}
