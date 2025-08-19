@@ -2,7 +2,7 @@
 const routes = {
     '': '/views/login.html',
     '#login': '/views/login.html',
-    '#dashboard': '/views/dashboard.html',
+    '#create_acconut': '/views/create_acconut.html',
     '#alunos': '/views/alunos.html',
     '#relatorios': '/views/relatorios.html'
   };
