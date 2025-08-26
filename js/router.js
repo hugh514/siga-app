@@ -5,7 +5,8 @@ const routes = {
   '#create_account': '/views/create_account.html',
   '#create_password': '/views/create_password.html',
   '#relatorios': '/views/relatorios.html',
-  '#barra': '/views/barra.html'
+  '#barra': '/views/barra.html',
+  '#home-app' : '/views/home-app.html',
 };
 
 async function loadPage() {
@@ -27,6 +28,7 @@ async function loadPage() {
       sidebar.style.display = 'none';
     } else {
       sidebar.style.display = 'block';
+
     }
 
   } catch (err) {
