@@ -2,8 +2,8 @@
 const routes = {
     '': '/views/login.html',
     '#login': '/views/login.html',
-    '#create_acconut': '/views/create_acconut.html',
-    '#alunos': '/views/alunos.html',
+    '#create_account': '/views/create_account.html',
+    '#create_password': '/views/create_password.html',
     '#relatorios': '/views/relatorios.html'
   };
   

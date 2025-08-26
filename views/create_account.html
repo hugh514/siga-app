@@ -1,46 +1,95 @@
-<div class="d-flex flex-column justify-content-center align-items-center vh-100 bg-light">
-    <!-- Título -->
-    <h3 class="mb-4 fw-normal text-dark">Bem vindo, crie sua conta escolar</h3>
-  
-    <!-- Card central -->
-    <div class="card shadow-sm border-0 p-4" style="max-width: 380px; width: 100%;">
-        
-      <!-- Formulário -->
-      <form id="login-form">
-        <div class="mb-3">
-          <input 
-            type="text" 
-            id="nome_admin" 
-            class="form-control" 
-            placeholder="Nome do Admin" 
-            required
-          >
+<!-- Etapa 1: Informações da escola -->
+<div id="school_info" class="d-flex flex-column justify-content-center align-items-center vh-100 bg-light">
+  <h3 class="mb-4 fw-normal text-dark">Bem vindo, crie sua conta escolar</h3>
+  <div class="card shadow-sm border-0 p-4" style="max-width: 380px; width: 100%;">
+    <form id="login-form">
+      <div class="mb-3">
+        <input type="text" id="nome_admin" class="form-control" placeholder="Nome do Admin" required>
+      </div>
+      <div class="mb-3">
+        <input type="text" id="nome_escola" class="form-control" placeholder="Nome da escola" required>
+      </div>
+      <div class="mb-3">
+        <input type="email" id="email_escolar" class="form-control" placeholder="Email escolar" required>
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Próximo</button>
+    </form>
+    <p class="text-center mt-3 mb-0 small">
+      Já possui uma conta? <a href="#criar-conta" class="text-primary text-decoration-none">Entre</a>
+    </p>
+  </div>
+</div>
+
+<!-- Etapa 2: Escolha de senha -->
+<div id="create_password" class="d-flex flex-column justify-content-center align-items-center vh-100 bg-light">
+  <h3 class="mb-4 fw-normal text-dark">Escolha sua senha</h3>
+  <div class="card shadow-sm border-0 p-4" style="max-width: 380px; width: 100%;">
+    <form id="senha-form">
+      <div class="mb-3 position-relative">
+        <label for="senha" class="form-label">Escolha sua senha</label>
+        <div class="input-group">
+          <input type="password" id="senha" class="form-control" placeholder="********" minlength="8" required>
+          <button type="button" class="btn btn-outline-secondary toggle-senha">👁</button>
         </div>
-        <div class="mb-3">
-            <input 
-              type="text" 
-              id="nome_escola" 
-              class="form-control" 
-              placeholder="Nome da escola" 
-              required
-            >
-          </div>
-        <div class="mb-3">
-          <input 
-            type="text" 
-            id="email_escolar" 
-            class="form-control" 
-            placeholder="Email escolar" 
-            required
-          >
+      </div>
+      <div class="mb-2 position-relative">
+        <label for="confirmar-senha" class="form-label">Confirme a senha</label>
+        <div class="input-group">
+          <input type="password" id="confirmar-senha" class="form-control" placeholder="********" minlength="8" required>
+          <button type="button" class="btn btn-outline-secondary toggle-senha">👁</button>
         </div>
-        <button type="submit" class="btn btn-primary w-100">Próximo</button>
-      </form>
-  
-      <!-- Link de cadastro -->
-      <p class="text-center mt-3 mb-0 small">
-        Já possui uma conta? <a href="#criar-conta" class="text-primary text-decoration-none">Entre</a>
-      </p>
+      </div>
+      <small class="text-muted d-block mb-3">Deve ter pelo menos 8 caracteres</small>
+      <button type="submit" class="btn btn-primary w-100">Próximo</button>
+    </form>
+  </div>
+
+  <!-- Stepper -->
+  <div class="mt-5 w-100" style="max-width: 700px;">
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="text-center">
+        <div class="step-circle step-active mx-auto mb-2">✓</div>
+        <small class="d-block">Suas informações</small>
+        <small class="text-muted">Nome e email</small>
+      </div>
+      <div class="step-line"></div>
+      <div class="text-center">
+        <div class="step-circle step-active mx-auto mb-2">•</div>
+        <small class="d-block">Escolha uma senha</small>
+        <small class="text-muted">Escolha uma senha segura</small>
+      </div>
+      <div class="step-line"></div>
+      <div class="text-center">
+        <div class="step-circle step-inactive mx-auto mb-2"></div>
+        <small class="d-block">Convide seus amigos</small>
+        <small class="text-muted">Comecem a se ajudar</small>
+      </div>
+      <div class="step-line"></div>
+      <div class="text-center">
+        <div class="step-circle step-inactive mx-auto mb-2"></div>
+        <small class="d-block">Documentos escolares</small>
+        <small class="text-muted">Para verificação da conta</small>
+      </div>
     </div>
   </div>
-  
+</div>
+
+<script>
+  // Scroll suave da primeira etapa para a segunda
+  document.getElementById('login-form').addEventListener('submit', function(e) {
+    e.preventDefault(); // evita envio padrão
+    document.getElementById('create_password').scrollIntoView({ behavior: 'smooth' });
+  });
+
+  // Toggle de visibilidade da senha
+  document.querySelectorAll('.toggle-senha').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const input = btn.previousElementSibling;
+      if (input.type === 'password') {
+        input.type = 'text';
+      } else {
+        input.type = 'password';
+      }
+    });
+  });
+</script>
