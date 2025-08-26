@@ -1,10 +1,9 @@
 // router.js
 const routes = {
-    '': '/views/login.html',
-    '#login': '/views/login.html',
-    '#create_account': '/views/create_account.html',
-    '#create_password': '/views/create_password.html',
-    '#relatorios': '/views/relatorios.html',
+    '': '/views/create-account/login.html',
+    '#login': '/views/create-account/login.html',
+    '#create_account': '/views/create-account/create_account.html',
+    '#create_password': '/views/create-account/create_password.html',
     '#cadastro_diciplina':'/views/diciplina/cadastro_diciplina.html',
     '#diciplina': '/views/diciplina/diciplina.html',
     '#editar_diciplina': '/views/diciplina/editar_diciplina.html',
