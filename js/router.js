@@ -5,7 +5,7 @@ const routes = {
   '#create_account': '/views/create_account.html',
   '#create_password': '/views/create_password.html',
   '#relatorios': '/views/relatorios.html',
-  '#barra': '/views/barra.html',
+  '#side_bar': '/views/side.html',
   '#home-app' : '/views/home-app.html',
 };
 
