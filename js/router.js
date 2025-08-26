@@ -4,7 +4,10 @@ const routes = {
     '#login': '/views/login.html',
     '#create_account': '/views/create_account.html',
     '#create_password': '/views/create_password.html',
-    '#relatorios': '/views/relatorios.html'
+    '#relatorios': '/views/relatorios.html',
+    '#cadastro_diciplina':'/views/cadastro_diciplina.html',
+    '#diciplina': '/views/diciplina.html',
+    '#editar_diciplina': '/views/editar_diciplina.html',
   };
   
   async function loadPage() {
