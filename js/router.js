@@ -10,6 +10,8 @@ const routes = {
     '#editar_diciplina': '/views/editar_diciplina.html',
   };
   
+
+
 async function loadPage() {
   const path = routes[location.hash] || routes[''];
 
