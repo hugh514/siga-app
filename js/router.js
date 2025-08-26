@@ -5,9 +5,9 @@ const routes = {
     '#create_account': '/views/create_account.html',
     '#create_password': '/views/create_password.html',
     '#relatorios': '/views/relatorios.html',
-    '#cadastro_diciplina':'/views/cadastro_diciplina.html',
-    '#diciplina': '/views/diciplina.html',
-    '#editar_diciplina': '/views/editar_diciplina.html',
+    '#cadastro_diciplina':'/views/diciplina/cadastro_diciplina.html',
+    '#diciplina': '/views/diciplina/diciplina.html',
+    '#editar_diciplina': '/views/diciplina/editar_diciplina.html',
   };
   
 
