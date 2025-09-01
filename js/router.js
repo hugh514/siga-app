@@ -14,16 +14,11 @@ const routes = {
     '#diario': '/views/diario/diario.html',
 
     '#professores': '/views/professores/professores.html',
+    '#cadastro_professor': '/views/professores/cadastro_professor.html',
+    '#editar_professor': '/views/professores/editar_professor.html',
 
-  '#calendario': '/views/calendario/calendario.html',
-  '#registro_eventos': '/views/calendario/registro_eventos.html',
 
-  '#estudantes': '/views/estudantes/estudantes.html',
-  '#editar_aluno': '/views/estudantes/editar_aluno.html',
-  '#tratamento_especial': '/views/estudantes/tratamento_especial.html',
-
-  '#matriculas': '/views/matriculas/matriculas.html',
-  '#matricula_aluno': '/views/matriculas/matricula_aluno.html'
+    
   };
   
 
