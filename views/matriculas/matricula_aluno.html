@@ -1,103 +1,225 @@
 <div class="container py-5">
-    <h3 class="mb-4 fw-normal text-dark text-center">Matrícula do Aluno</h3>
-    <div class="card shadow-sm border-0 p-4 mx-auto" style="max-width: 800px;">
-    <form>
-        <!-- Dados pessoais -->
-        <h5 class="mb-3">Dados Pessoais</h5>
-        <div class="row">
-        <div class="col-md-8 mb-3">
-            <label class="form-label">Nome Completo</label>
-            <input type="text" class="form-control" placeholder="Nome do aluno" required>
-        </div>
-        <div class="col-md-4 mb-3">
-            <label class="form-label">Data de Nascimento</label>
-            <input type="date" class="form-control" required>
-        </div>
-        </div>
-        <div class="row">
-        <div class="col-md-6 mb-3">
-            <label class="form-label">CPF</label>
-            <input type="text" class="form-control" placeholder="000.000.000-00">
-        </div>
-        <div class="col-md-6 mb-3">
-            <label class="form-label">RG</label>
-            <input type="text" class="form-control" placeholder="00.000.000-0">
-        </div>
-        </div>
-        <div class="mb-3">
-        <label class="form-label">Endereço</label>
-        <input type="text" class="form-control" placeholder="Rua, número, bairro, cidade" required>
-        </div>
-        <div class="row">
-        <div class="col-md-6 mb-3">
-            <label class="form-label">Telefone</label>
-            <input type="tel" class="form-control" placeholder="(00) 00000-0000">
-        </div>
-        <div class="col-md-6 mb-3">
-            <label class="form-label">Email</label>
-            <input type="email" class="form-control" placeholder="email@exemplo.com">
-        </div>
-        </div>
-        <!-- Dados acadêmicos -->
-        <h5 class="mt-4 mb-3">Dados Acadêmicos</h5>
-        <div class="row">
-        <div class="col-md-3 mb-3">
-            <label class="form-label">Período Letivo</label>
-            <select class="form-select" id="periodo_letivo"></select>
-        </div>
-        <div class="col-md-3 mb-3">
-            <label class="form-label">Curso</label>
-            <select class="form-select">
-            <option>Fundamental I</option>
-            <option>Fundamental II</option>
-            <option>Médio</option>
+    <h3 class="mb-4 fw-normal text-dark text-center">Matricular Aluno</h3>
+  
+    <div class="card shadow-sm border-0 p-4 mx-auto" style="max-width:900px;">
+      <form id="form-matricular">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label for="alunoSelect" class="form-label">Aluno</label>
+            <select id="alunoSelect" class="form-select" required>
+              <option value="">Carregando alunos...</option>
             </select>
-        </div>
-        <div class="col-md-3 mb-3">
-            <label class="form-label">Série</label>
-            <select class="form-select">
-            <option>1º Ano</option>
-            <option>2º Ano</option>
-            <option>3º Ano</option>
+          </div>
+  
+          <div class="col-md-6">
+            <label for="turmaSelect" class="form-label">Turma</label>
+            <select id="turmaSelect" class="form-select" required>
+              <option value="">Carregando turmas...</option>
             </select>
-        </div>
-        <div class="col-md-3 mb-3">
-            <label class="form-label">Turno</label>
-            <select class="form-select">
-            <option>Matutino</option>
-            <option>Vespertino</option>
-            <option>Noturno</option>
+          </div>
+  
+          <div class="col-md-3">
+            <label for="anoSelect" class="form-label">Ano Letivo</label>
+            <select id="anoSelect" class="form-select" required></select>
+          </div>
+  
+          <div class="col-md-3">
+            <label for="statusMatricula" class="form-label">Status</label>
+            <select id="statusMatricula" class="form-select">
+              <option value="Ativa">Ativa</option>
+              <option value="Pendente">Pendente</option>
+              <option value="Cancelada">Cancelada</option>
             </select>
+          </div>
+  
+          <div class="col-md-6 align-self-end">
+            <div class="d-flex justify-content-between">
+              <a href="#menu_matriculas" class="btn btn-outline-secondary">Cancelar</a>
+              <button type="submit" class="btn btn-primary">Matricular</button>
+            </div>
+          </div>
         </div>
-        </div>
-        <!-- Responsável -->
-        <h5 class="mt-4 mb-3">Responsável</h5>
-        <div class="row">
-        <div class="col-md-6 mb-3">
-            <label class="form-label">Nome do Responsável</label>
-            <input type="text" class="form-control" placeholder="Nome completo do responsável" required>
-        </div>
-        <div class="col-md-6 mb-3">
-            <label class="form-label">Telefone do Responsável</label>
-            <input type="tel" class="form-control" placeholder="(00) 00000-0000">
-        </div>
-        </div>
-        <!-- Botões -->
-        <div class="d-flex justify-content-between mt-4">
-        <a href="#matriculas" class="btn btn-outline-secondary">Cancelar</a>
-        <button type="submit" class="btn btn-primary">Salvar</button>
-        </div>
-    </form>
+      </form>
     </div>
-</div>
-<script>
-    // Preencher anos do período letivo (2000 até ano atual)
-    const anoAtual = new Date().getFullYear();
-    const selectAno = document.getElementById("periodo_letivo");
-    for (let ano = anoAtual; ano >= 2000; ano--) {
-    const option = document.createElement("option");
-    option.value = ano;
-    option.textContent = ano;
-    selectAno.appendChild(option);
+  
+    <!-- Lista de matrículas -->
+    <div class="card shadow-sm border-0 mt-4">
+      <div class="card-body">
+        <h5 class="mb-3">Matrículas Cadastradas</h5>
+        <div class="table-responsive">
+          <table class="table table-hover" id="matriculasTable">
+            <thead class="table-light">
+              <tr>
+                <th>Aluno</th>
+                <th>Turma</th>
+                <th>Ano</th>
+                <th>Série</th>
+                <th>Turno</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Helpers para localStorage
+    function getLS(key){ return JSON.parse(localStorage.getItem(key) || 'null'); }
+    function setLS(key, val){ localStorage.setItem(key, JSON.stringify(val)); }
+  
+    // Inicializar dados de exemplo se não existirem (remova em produção)
+    if (!getLS('alunos')) {
+      setLS('alunos', [
+        { id: 'a1', nome: 'Maria Silva', serie: '1º Ano' },
+        { id: 'a2', nome: 'João Souza', serie: '2º Ano' },
+        { id: 'a3', nome: 'Ana Costa', serie: '3º Ano' }
+      ]);
     }
-</script>
+    if (!getLS('turmas')) {
+      setLS('turmas', [
+        { id: 't1', nome: 'Turma A', serie: '1º Ano', turno: 'Matutino' },
+        { id: 't2', nome: 'Turma B', serie: '2º Ano', turno: 'Vespertino' },
+        { id: 't3', nome: 'Turma C', serie: '3º Ano', turno: 'Matutino' }
+      ]);
+    }
+    if (!getLS('matriculas')) setLS('matriculas', []);
+  
+    const alunos = () => getLS('alunos') || [];
+    const turmas = () => getLS('turmas') || [];
+    const matriculas = () => getLS('matriculas') || [];
+  
+    const selectAluno = document.getElementById('alunoSelect');
+    const selectTurma = document.getElementById('turmaSelect');
+    const selectAno = document.getElementById('anoSelect');
+    const tableBody = document.querySelector('#matriculasTable tbody');
+    const form = document.getElementById('form-matricular');
+  
+    function preencherAnos(){
+      const anoAtual = new Date().getFullYear();
+      selectAno.innerHTML = '';
+      for(let y = anoAtual; y >= 2000; y--){
+        const op = document.createElement('option');
+        op.value = y;
+        op.textContent = y;
+        selectAno.appendChild(op);
+      }
+    }
+  
+    function preencherAlunos(){
+      const list = alunos();
+      selectAluno.innerHTML = '';
+      if (!list.length){
+        selectAluno.innerHTML = '<option value="">Nenhum aluno cadastrado</option>';
+        selectAluno.disabled = true;
+        return;
+      }
+      selectAluno.disabled = false;
+      selectAluno.innerHTML = '<option value="">Selecione o aluno</option>';
+      list.forEach(a => {
+        const o = document.createElement('option');
+        o.value = a.id;
+        o.textContent = a.nome + (a.serie ? ` — ${a.serie}` : '');
+        o.dataset.serie = a.serie || '';
+        selectAluno.appendChild(o);
+      });
+    }
+  
+    function preencherTurmas(){
+      const list = turmas();
+      selectTurma.innerHTML = '';
+      if (!list.length){
+        selectTurma.innerHTML = '<option value="">Nenhuma turma cadastrada</option>';
+        selectTurma.disabled = true;
+        return;
+      }
+      selectTurma.disabled = false;
+      selectTurma.innerHTML = '<option value="">Selecione a turma</option>';
+      list.forEach(t => {
+        const o = document.createElement('option');
+        o.value = t.id;
+        o.textContent = t.nome + (t.serie ? ` — ${t.serie}` : '') + (t.turno ? ` (${t.turno})` : '');
+        o.dataset.serie = t.serie || '';
+        o.dataset.turno = t.turno || '';
+        selectTurma.appendChild(o);
+      });
+    }
+  
+    function renderMatriculas(){
+      const list = matriculas();
+      tableBody.innerHTML = '';
+      if (!list.length){
+        tableBody.innerHTML = '<tr><td colspan="6" class="text-muted text-center">Nenhuma matrícula cadastrada</td></tr>';
+        return;
+      }
+      list.forEach(m => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${m.alunoNome}</td>
+          <td>${m.turmaNome}</td>
+          <td>${m.ano}</td>
+          <td>${m.serie || ''}</td>
+          <td>${m.turno || ''}</td>
+          <td>${m.status || ''}</td>
+        `;
+        tableBody.appendChild(tr);
+      });
+    }
+  
+    // Validar e salvar matrícula
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const alunoId = selectAluno.value;
+      const turmaId = selectTurma.value;
+      const ano = selectAno.value;
+      const status = document.getElementById('statusMatricula').value;
+  
+      if(!alunoId || !turmaId || !ano){
+        alert('Preencha aluno, turma e ano.');
+        return;
+      }
+  
+      const alunoObj = alunos().find(a => a.id === alunoId);
+      const turmaObj = turmas().find(t => t.id === turmaId);
+  
+      // Evitar matrícula duplicada no mesmo ano/turma
+      const existe = matriculas().some(m => m.alunoId === alunoId && m.turmaId === turmaId && m.ano == ano);
+      if (existe){
+        alert('Aluno já matriculado nessa turma/ano.');
+        return;
+      }
+  
+      const nova = {
+        id: 'm' + Date.now(),
+        alunoId,
+        alunoNome: alunoObj.nome,
+        turmaId,
+        turmaNome: turmaObj.nome,
+        ano,
+        serie: turmaObj.serie || alunoObj.serie || '',
+        turno: turmaObj.turno || '',
+        status,
+        data: new Date().toISOString()
+      };
+  
+      const arr = matriculas();
+      arr.push(nova);
+      setLS('matriculas', arr);
+  
+      preencherAlunos(); preencherTurmas(); renderMatriculas();
+      form.reset();
+      preencherAnos();
+      alert('Matrícula registrada com sucesso.');
+    });
+  
+    // Inicialização
+    preencherAnos();
+    preencherAlunos();
+    preencherTurmas();
+    renderMatriculas();
+  });
+  </script>
+  

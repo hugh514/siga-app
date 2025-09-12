@@ -17,6 +17,19 @@ const routes = {
     '#cadastro_professor': '/views/professores/cadastro_professor.html',
     '#editar_professor': '/views/professores/editar_professor.html',
 
+     // Alunos
+  '#alunos': '/views/alunos/alunos.html',
+  '#cadastro_aluno': '/views/alunos/cadastro_aluno.html',
+  '#editar_aluno': '/views/alunos/editar_aluno.html',
+  '#atendimento_educacional': '/views/alunos/atendimento_educacional.html',
+  '#excluir_aluno': '/views/alunos/excluir_aluno.html',
+
+  // Matrículas
+  '#menu_matriculas': '/views/matriculas/menu_matriculas.html',
+  '#matriculas': '/views/matriculas/matriculas.html',
+  '#matricula_aluno': '/views/matriculas/matricula_aluno.html',
+  '#excluir_matricula': '/views/matriculas/excluir_matricula.html'
+  
 
     
   };

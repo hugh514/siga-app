@@ -1,0 +1,119 @@
+<div class="container py-5">
+    <h3 class="mb-4 fw-normal text-dark text-center">Excluir Matrícula</h3>
+  
+    <div class="card shadow-sm border-0 p-4 mx-auto" style="max-width:700px;">
+      <div class="mb-3">
+        <label for="matriculaSelect" class="form-label">Selecione a matrícula que deseja excluir</label>
+        <select id="matriculaSelect" class="form-select">
+          <option>Carregando...</option>
+        </select>
+      </div>
+  
+      <div id="detalhesMatricula" class="mb-3 text-muted"></div>
+  
+      <div class="d-flex justify-content-center gap-3">
+        <button id="btnExcluir" class="btn btn-danger" disabled>Excluir Matrícula</button>
+        <a href="#menu_matriculas" class="btn btn-outline-secondary">Cancelar</a>
+      </div>
+    </div>
+  
+    <!-- Lista rápida de matrículas -->
+    <div class="card shadow-sm border-0 mt-4">
+      <div class="card-body">
+        <h5 class="mb-3">Matrículas Atuais</h5>
+        <ul id="listaMatriculas" class="list-group"></ul>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    function getLS(k){ return JSON.parse(localStorage.getItem(k) || 'null'); }
+    function setLS(k,v){ localStorage.setItem(k, JSON.stringify(v)); }
+  
+    if (!getLS('matriculas')) setLS('matriculas', []);
+    if (!getLS('alunos')) setLS('alunos', [
+      { id: 'a1', nome: 'Maria Silva', serie: '1º Ano' },
+      { id: 'a2', nome: 'João Souza', serie: '2º Ano' }
+    ]);
+    if (!getLS('turmas')) setLS('turmas', [
+      { id: 't1', nome: 'Turma A', serie: '1º Ano', turno: 'Matutino' }
+    ]);
+  
+    const select = document.getElementById('matriculaSelect');
+    const detalhes = document.getElementById('detalhesMatricula');
+    const btnExcluir = document.getElementById('btnExcluir');
+    const lista = document.getElementById('listaMatriculas');
+  
+    function preencherSelect(){
+      const arr = getLS('matriculas') || [];
+      select.innerHTML = '';
+      if (!arr.length){
+        select.innerHTML = '<option value="">Nenhuma matrícula encontrada</option>';
+        btnExcluir.disabled = true;
+        renderLista();
+        detalhes.textContent = '';
+        return;
+      }
+      select.innerHTML = '<option value="">Selecione uma matrícula</option>';
+      arr.forEach(m => {
+        const o = document.createElement('option');
+        o.value = m.id;
+        o.textContent = `${m.alunoNome} — ${m.turmaNome} — ${m.ano}`;
+        select.appendChild(o);
+      });
+      btnExcluir.disabled = true;
+    }
+  
+    function renderLista(){
+      const arr = getLS('matriculas') || [];
+      lista.innerHTML = '';
+      if (!arr.length){
+        lista.innerHTML = '<li class="list-group-item text-muted">Nenhuma matrícula</li>';
+        return;
+      }
+      arr.forEach(m => {
+        const li = document.createElement('li');
+        li.className = 'list-group-item';
+        li.textContent = `${m.alunoNome} · ${m.turmaNome} · ${m.ano} · ${m.serie || ''} · ${m.turno || ''}`;
+        lista.appendChild(li);
+      });
+    }
+  
+    select.addEventListener('change', () => {
+      const id = select.value;
+      const arr = getLS('matriculas') || [];
+      const m = arr.find(x => x.id === id);
+      if (!m){
+        detalhes.textContent = '';
+        btnExcluir.disabled = true;
+        return;
+      }
+      detalhes.innerHTML = `
+        <strong>Aluno:</strong> ${m.alunoNome} <br>
+        <strong>Turma:</strong> ${m.turmaNome} <br>
+        <strong>Ano:</strong> ${m.ano} <br>
+        <strong>Série / Turno:</strong> ${m.serie || '-'} / ${m.turno || '-'} <br>
+        <strong>Status:</strong> ${m.status || '-'}
+      `;
+      btnExcluir.disabled = false;
+    });
+  
+    btnExcluir.addEventListener('click', () => {
+      const id = select.value;
+      if(!id) return;
+      if(!confirm('Tem certeza que deseja excluir esta matrícula?')) return;
+      let arr = getLS('matriculas') || [];
+      arr = arr.filter(m => m.id !== id);
+      setLS('matriculas', arr);
+      alert('Matrícula excluída.');
+      preencherSelect();
+      renderLista();
+    });
+  
+    // init
+    preencherSelect();
+    renderLista();
+  });
+  </script>
+  
